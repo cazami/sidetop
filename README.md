@@ -1,5 +1,7 @@
 # Sidetop – Horizontal Scrolling Desktop
 
+[日本語](README.ja.md)
+
 A [Windhawk](https://windhawk.net/) mod that makes the Windows desktop wider
 than the screen. Scroll it left and right with the mouse wheel and keep icons
 on the extra pages.
@@ -93,22 +95,3 @@ Claude), tested on the author's own PC.
 
 [MIT](LICENSE)
 
----
-
-## 日本語
-
-Windows のデスクトップを画面より広くし、マウスホイールで左右にスクロールできるようにする Windhawk の mod です。右に足したページにもアイコンを置けます。
-
-**導入**
-
-1. アイコンの配置をバックアップします（上の `reg export` のコマンド）。
-2. Windhawk の **Create a new mod** で、コードを [`sidetop.wh.cpp`](sidetop.wh.cpp) に置き換え、**Compile Mod** して有効にします。
-3. Explorer を一度再起動します。
-
-**注意**
-
-- 「アイコンの自動整列」はオフにしてください。オンのあいだは何もしません。
-- mod を無効にすると、ホームの外にあるアイコンは、すべてホームの空き位置に戻ります。
-- 確かめたのは Windows 10 22H2、モニター1台の環境です。Windows 11 は仮想マシンで試し、主な機能が動きました。すべての機能は確かめていません。
-- モニターが2台以上のあいだは止まります。モニターを足したときは、先にすべてのアイコンをホームに戻します。
-- 既知の問題：アイコンのサイズ変更や Explorer の再起動で、まれに配置がずれます。アイコンが多いと、壁紙が「固定」「パララックス」のときは滑らかさが落ちます。
