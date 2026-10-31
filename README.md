@@ -1,37 +1,29 @@
 # Sidetop – Horizontal Scrolling Desktop
 
-[日本語](README.ja.md)
+[English](README.en.md)
 
-A [Windhawk](https://windhawk.net/) mod that makes the Windows desktop wider
-than the screen. Scroll it left and right with the mouse wheel and keep icons
-on the extra pages.
+Windows のデスクトップを画面より広くする [Windhawk](https://windhawk.net/) の mod です。
+マウスホイールで左右にスクロールでき、右に足したページにもアイコンを置けます。
 
-- Wheel down moves right, wheel up moves left. The left edge stops at your
-  original layout ("home"). Ctrl+wheel still changes the icon size.
-- Smooth scrolling with a little glide, or page by page.
-- Drag with the middle mouse button to move the desktop by hand.
-- Double-click an empty spot, or press a shortcut key, to go back home.
-- While dragging icons, hold them at the screen edge to move to the next page.
-- New files (downloads, for example) appear on the page you are looking at.
-- The wallpaper can stay fixed, move a little (parallax), or be a wide image
-  that moves with the icons.
-- A thin bar at the bottom shows where you are while the desktop moves.
+- ホイールを下に回すと右へ、上に回すと左へ動きます。左の端は、もとの配置（「ホーム」）で止まります。Ctrl+ホイールでのアイコンのサイズ変更は、今までどおり使えます。
+- 少し惰性の付いた滑らかなスクロールと、1ページずつのスクロールを選べます。
+- マウスの中ボタンでドラッグすると、デスクトップを手で動かせます。
+- 何もないところをダブルクリックするか、ショートカットキーを押すと、ホームに戻ります。
+- アイコンをドラッグしたまま画面の端で止めると、隣のページへ動きます。
+- 新しくできたファイル（ダウンロードしたファイルなど）は、今見ているページに出てきます。
+- 壁紙は、動かさない、少しだけ動かす（パララックス）、アイコンと一緒に動く横長の画像、から選べます。
+- 動いているあいだ、画面の下に今の位置を示す細いバーが出ます。
 
-Tested on Windows 10 22H2 with one monitor. On Windows 11 it was tried in a
-virtual machine, where the main features worked; not every feature has been
-checked there.
+確かめたのは Windows 10 22H2、モニター1台の環境です。Windows 11 は仮想マシンで試し、主な機能が動きました。すべての機能は確かめていません。
 
-## Install
+## 導入
 
-1. Back up your icon layout:
+1. アイコンの配置をバックアップします。
    `reg export "HKCU\Software\Microsoft\Windows\Shell\Bags\1\Desktop" desktop-icons-backup.reg`
-2. In Windhawk, choose **Create a new mod**, replace the code with
-   [`sidetop.wh.cpp`](sidetop.wh.cpp), then **Compile Mod** and enable it.
-3. Restart Explorer once, so that icons placed on the added pages stay there
-   after a refresh.
+2. Windhawk で **Create a new mod** を選び、コードを [`sidetop.wh.cpp`](sidetop.wh.cpp) の中身に置き換えます。**Compile Mod** を押して、有効にします。
+3. Explorer を一度再起動します。足したページに置いたアイコンが、更新（F5）のあとも同じ場所に残るようになります。
 
-To restore the backup, turn the mod off, then run these one at a time
-(Explorer saves the layout when it exits, so import while it is closed):
+バックアップを戻すときは、mod を無効にしてから、次のコマンドを1つずつ実行します。Explorer は終わるときに配置を保存するので、Explorer を閉じているあいだに読み込みます。
 
 ```
 taskkill /f /im explorer.exe
@@ -39,59 +31,45 @@ reg import desktop-icons-backup.reg
 start explorer.exe
 ```
 
-## Settings
+## 設定
 
-| Setting | Default |
+| 設定 | 最初の値 |
 |---|---|
-| Scrolling: smooth or page by page | Smooth |
-| Pixels per wheel notch (smooth only) | 200 |
-| Glide (inertia), in milliseconds | 100 |
-| Pages added to the right of home | 1 |
-| Go back home with: double-click, shortcut key, or nothing | Double-click |
-| Shortcut key for going back home | Ctrl+Alt+Home |
-| Wallpaper: fixed, parallax, or wide image | Fixed |
-| Wide image file | (empty) |
-| Put new icons on the screen you are looking at | On |
-| Move to the next page while dragging icons at the screen edge | On |
-| Wait at the edge before moving, in milliseconds | 500 |
-| Top speed while dragging at the edge, in pixels per second | 1500 |
-| Show a position bar at the bottom while scrolling | On |
+| スクロールの方式：滑らか、または1ページずつ | 滑らか |
+| ホイール1目盛りで動く量（ピクセル、滑らかのときだけ） | 200 |
+| 惰性の長さ（ミリ秒） | 100 |
+| ホームの右に足すページの数 | 1 |
+| ホームに戻る方法：ダブルクリック、ショートカットキー、なし | ダブルクリック |
+| ホームに戻るショートカットキー | Ctrl+Alt+Home |
+| 壁紙：固定、パララックス、横長の画像 | 固定 |
+| 横長の画像のファイル | （空） |
+| 新しいアイコンを今見ている画面に置く | オン |
+| アイコンのドラッグ中に、画面の端で隣のページへ動く | オン |
+| 端で動き出すまでの待ち時間（ミリ秒） | 500 |
+| 端で動くときの最高の速さ（ピクセル／秒） | 1500 |
+| スクロール中、画面の下に位置のバーを出す | オン |
 
-## Good to know
+## 知っておいてほしいこと
 
-- **"Auto arrange icons" must be off.** While it is on, the mod does nothing.
-  Turning it on moves every icon back home.
-- **Turning the mod off or uninstalling it** moves every icon that is outside
-  home back into a free spot on the home screen, so no file is ever lost off
-  the screen.
-- The page you were on is restored after Explorer restarts.
-- Edge scrolling while dragging works for drags that start in Explorer (the
-  desktop or a folder window), not for drags from other programs.
+- **「アイコンの自動整列」はオフにしてください。** オンのあいだ、この mod は何もしません。オンにすると、すべてのアイコンがホームに戻ります。
+- **mod を無効にしたり、アンインストールしたりすると、** ホームの外にあるアイコンは、すべてホームの空いている場所に戻ります。画面の外に取り残されるファイルはありません。
+- 見ていたページは、Explorer を再起動したあとも元に戻ります。
+- ドラッグ中に端で動く機能は、Explorer（デスクトップやフォルダーのウィンドウ）から始めたドラッグで働きます。ほかのアプリからのドラッグでは働きません。
 
-## Known issues
+## 既知の問題
 
-- Changing the icon size, or restarting Explorer, can now and then shift some
-  icons out of place.
-- With many icons on the screen, scrolling is less smooth with the fixed and
-  parallax wallpaper. The wide image mode is the smoothest.
-- Only one monitor is supported so far. With two or more, the mod stays
-  off; when a monitor is added, every icon goes back home first. It starts
-  again when you are back to one monitor.
+- アイコンのサイズを変えたときや、Explorer を再起動したときに、まれに一部のアイコンの位置がずれます。
+- 画面にアイコンが多いと、壁紙が「固定」と「パララックス」のときは滑らかさが落ちます。「横長の画像」がいちばん滑らかです。
+- 今はモニター1台だけに対応しています。2台以上のあいだ、この mod は止まります。モニターを足したときは、先にすべてのアイコンをホームに戻します。1台に戻ると、また動き出します。
 
-## How it works
+## 仕組み
 
-The desktop icons live in a list view window inside Explorer. Sidetop makes
-that window and Explorer's work area two or more screens wide and slides the
-window left and right. Icons are never moved for scrolling, so the layout
-Explorer saves is the real one. Notes from the development are in
-[`docs/`](docs/) (in Japanese).
+デスクトップのアイコンは、Explorer の中のリストビューというウィンドウにあります。Sidetop は、このウィンドウと Explorer の作業領域を画面2つ分以上の幅にして、ウィンドウを左右にずらします。スクロールのためにアイコンを動かすことはないので、Explorer が保存する配置は本当の配置のままです。開発中のメモは [`docs/`](docs/) にあります。
 
-## Credits
+## クレジット
 
-Written with [Claude Code](https://claude.com/claude-code) (Anthropic's
-Claude), tested on the author's own PC.
+[Claude Code](https://claude.com/claude-code)（Anthropic の Claude）で書き、作者自身の PC で確かめました。
 
-## License
+## ライセンス
 
 [MIT](LICENSE)
-
